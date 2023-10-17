@@ -4,6 +4,7 @@ const multer = require("multer");
 const path = require("path");
 
 const traineeController = require("../controllers/traineeController");
+const userController = require("../controllers/userController");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -18,6 +19,10 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
+
+// authentication api
+router.post("/register", userController.register);
+router.post("/login", userController.login);
 
 router.post("/create", upload.single("pic"), traineeController.create);
 router.get("/traineelist", traineeController.list);
