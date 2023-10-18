@@ -70,24 +70,30 @@ traineeController.list = async (req, res) => {
 
 traineeController.renew = async (req, res) => {
   const id = req.params.id;
-  const { selectPackage } = req.body;
+  const { selectPackage, startDate } = req.body;
   let totalAmount = 0;
+  let endDate = startDate;
   const baseAmount = 1000; // per months (Rs. 1000)
+  const currentDate = new Date(startDate);
 
   if (selectPackage === "1") {
     totalAmount = baseAmount;
+    endDate = currentDate.setDate(currentDate.getDate() + 30);
   } else if (selectPackage === "3") {
     // 10% of discount in 3 months packages
     totalAmount =
       baseAmount * selectPackage - (baseAmount * selectPackage * 10) / 100;
+    endDate = currentDate.setDate(currentDate.getDate() + 90);
   } else if (selectPackage === "6") {
     // 15% of discount in 3 months packages
     totalAmount =
       baseAmount * selectPackage - (baseAmount * selectPackage * 15) / 100;
+    endDate = currentDate.setDate(currentDate.getDate() + 180);
   } else if (selectPackage === "12") {
     // 20% of discount in 3 months packages
     totalAmount =
       baseAmount * selectPackage - (baseAmount * selectPackage * 20) / 100;
+    endDate = currentDate.setDate(currentDate.getDate() + 365);
   }
 
   try {
@@ -100,6 +106,8 @@ traineeController.renew = async (req, res) => {
       email: trainee.email,
       pic: trainee.pic,
       selectPackage: trainee.selectPackage,
+      startDate: trainee.startDate,
+      endDate: trainee.endDate,
       totalAmount: trainee.totalAmount,
       active: "InActive",
     });
@@ -112,6 +120,8 @@ traineeController.renew = async (req, res) => {
         email: trainee.emal,
         pic: trainee.pic,
         selectPackage: selectPackage,
+        startDate: startDate,
+        endDate: endDate,
         totalAmount: totalAmount,
         active: trainee.active,
       },

@@ -7,7 +7,8 @@ const traineeDetailSchema = mongoose.Schema({
   email: { type: String },
   pic: { type: String },
   active: { type: String },
-  // startDate: { type: Date },
+  startDate: { type: Date },
+  endDate: { type: Date },
   selectPackage: { type: Number },
   totalAmount: { type: Number },
 });
