@@ -4,7 +4,7 @@ const TraineeDetails = require("../models/traineeDetailsModel");
 const traineeController = {};
 
 traineeController.create = async (req, res) => {
-  const { name, email, selectPackage, startDate } = req.body;
+  const { name, email, selectPackage, startDate, discount } = req.body;
   let totalAmount = 0;
   let endDate = startDate;
   const baseAmount = 1000; // per months (Rs. 1000)
@@ -14,22 +14,64 @@ traineeController.create = async (req, res) => {
   console.log("start date", startDate);
 
   if (selectPackage === "1") {
-    totalAmount = baseAmount;
+    totalAmount =
+      baseAmount * selectPackage -
+      (baseAmount * selectPackage * discount) / 100;
     endDate = currentDate.setDate(currentDate.getDate() + 30);
+  } else if (selectPackage === "2") {
+    totalAmount =
+      baseAmount * selectPackage -
+      (baseAmount * selectPackage * discount) / 100;
+    endDate = currentDate.setDate(currentDate.getDate() + 60);
   } else if (selectPackage === "3") {
-    // 10% of discount in 3 months packages
     totalAmount =
-      baseAmount * selectPackage - (baseAmount * selectPackage * 10) / 100;
+      baseAmount * selectPackage -
+      (baseAmount * selectPackage * discount) / 100;
     endDate = currentDate.setDate(currentDate.getDate() + 90);
+  } else if (selectPackage === "4") {
+    totalAmount =
+      baseAmount * selectPackage -
+      (baseAmount * selectPackage * discount) / 100;
+    endDate = currentDate.setDate(currentDate.getDate() + 120);
+  } else if (selectPackage === "5") {
+    totalAmount =
+      baseAmount * selectPackage -
+      (baseAmount * selectPackage * discount) / 100;
+    endDate = currentDate.setDate(currentDate.getDate() + 151);
   } else if (selectPackage === "6") {
-    // 15% of discount in 3 months packages
     totalAmount =
-      baseAmount * selectPackage - (baseAmount * selectPackage * 15) / 100;
-    endDate = currentDate.setDate(currentDate.getDate() + 180);
+      baseAmount * selectPackage -
+      (baseAmount * selectPackage * discount) / 100;
+    endDate = currentDate.setDate(currentDate.getDate() + 182);
+  } else if (selectPackage === "7") {
+    totalAmount =
+      baseAmount * selectPackage -
+      (baseAmount * selectPackage * discount) / 100;
+    endDate = currentDate.setDate(currentDate.getDate() + 212);
+  } else if (selectPackage === "8") {
+    totalAmount =
+      baseAmount * selectPackage -
+      (baseAmount * selectPackage * discount) / 100;
+    endDate = currentDate.setDate(currentDate.getDate() + 242);
+  } else if (selectPackage === "9") {
+    totalAmount =
+      baseAmount * selectPackage -
+      (baseAmount * selectPackage * discount) / 100;
+    endDate = currentDate.setDate(currentDate.getDate() + 273);
+  } else if (selectPackage === "10") {
+    totalAmount =
+      baseAmount * selectPackage -
+      (baseAmount * selectPackage * discount) / 100;
+    endDate = currentDate.setDate(currentDate.getDate() + 303);
+  } else if (selectPackage === "11") {
+    totalAmount =
+      baseAmount * selectPackage -
+      (baseAmount * selectPackage * discount) / 100;
+    endDate = currentDate.setDate(currentDate.getDate() + 334);
   } else if (selectPackage === "12") {
-    // 20% of discount in 3 months packages
     totalAmount =
-      baseAmount * selectPackage - (baseAmount * selectPackage * 20) / 100;
+      baseAmount * selectPackage -
+      (baseAmount * selectPackage * discount) / 100;
     endDate = currentDate.setDate(currentDate.getDate() + 365);
   }
 
@@ -70,29 +112,71 @@ traineeController.list = async (req, res) => {
 
 traineeController.renew = async (req, res) => {
   const id = req.params.id;
-  const { selectPackage, startDate } = req.body;
+  const { selectPackage, startDate, discount } = req.body;
   let totalAmount = 0;
   let endDate = startDate;
   const baseAmount = 1000; // per months (Rs. 1000)
   const currentDate = new Date(startDate);
 
   if (selectPackage === "1") {
-    totalAmount = baseAmount;
+    totalAmount =
+      baseAmount * selectPackage -
+      (baseAmount * selectPackage * discount) / 100;
     endDate = currentDate.setDate(currentDate.getDate() + 30);
+  } else if (selectPackage === "2") {
+    totalAmount =
+      baseAmount * selectPackage -
+      (baseAmount * selectPackage * discount) / 100;
+    endDate = currentDate.setDate(currentDate.getDate() + 60);
   } else if (selectPackage === "3") {
-    // 10% of discount in 3 months packages
     totalAmount =
-      baseAmount * selectPackage - (baseAmount * selectPackage * 10) / 100;
+      baseAmount * selectPackage -
+      (baseAmount * selectPackage * discount) / 100;
     endDate = currentDate.setDate(currentDate.getDate() + 90);
+  } else if (selectPackage === "4") {
+    totalAmount =
+      baseAmount * selectPackage -
+      (baseAmount * selectPackage * discount) / 100;
+    endDate = currentDate.setDate(currentDate.getDate() + 120);
+  } else if (selectPackage === "5") {
+    totalAmount =
+      baseAmount * selectPackage -
+      (baseAmount * selectPackage * discount) / 100;
+    endDate = currentDate.setDate(currentDate.getDate() + 151);
   } else if (selectPackage === "6") {
-    // 15% of discount in 3 months packages
     totalAmount =
-      baseAmount * selectPackage - (baseAmount * selectPackage * 15) / 100;
-    endDate = currentDate.setDate(currentDate.getDate() + 180);
+      baseAmount * selectPackage -
+      (baseAmount * selectPackage * discount) / 100;
+    endDate = currentDate.setDate(currentDate.getDate() + 182);
+  } else if (selectPackage === "7") {
+    totalAmount =
+      baseAmount * selectPackage -
+      (baseAmount * selectPackage * discount) / 100;
+    endDate = currentDate.setDate(currentDate.getDate() + 212);
+  } else if (selectPackage === "8") {
+    totalAmount =
+      baseAmount * selectPackage -
+      (baseAmount * selectPackage * discount) / 100;
+    endDate = currentDate.setDate(currentDate.getDate() + 242);
+  } else if (selectPackage === "9") {
+    totalAmount =
+      baseAmount * selectPackage -
+      (baseAmount * selectPackage * discount) / 100;
+    endDate = currentDate.setDate(currentDate.getDate() + 273);
+  } else if (selectPackage === "10") {
+    totalAmount =
+      baseAmount * selectPackage -
+      (baseAmount * selectPackage * discount) / 100;
+    endDate = currentDate.setDate(currentDate.getDate() + 303);
+  } else if (selectPackage === "11") {
+    totalAmount =
+      baseAmount * selectPackage -
+      (baseAmount * selectPackage * discount) / 100;
+    endDate = currentDate.setDate(currentDate.getDate() + 334);
   } else if (selectPackage === "12") {
-    // 20% of discount in 3 months packages
     totalAmount =
-      baseAmount * selectPackage - (baseAmount * selectPackage * 20) / 100;
+      baseAmount * selectPackage -
+      (baseAmount * selectPackage * discount) / 100;
     endDate = currentDate.setDate(currentDate.getDate() + 365);
   }
 

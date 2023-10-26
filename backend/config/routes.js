@@ -7,7 +7,8 @@ const userAuthentication = require("../middlewares/authentication");
 
 const traineeController = require("../controllers/traineeController");
 const userController = require("../controllers/userController");
-const authenticateUser = require("../middlewares/authentication");
+const offerController = require("../controllers/offerController");
+// const videoController = require("../controllers/offerController");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -31,5 +32,11 @@ router.post("/create", upload.single("pic"), traineeController.create);
 router.get("/traineelist", userAuthentication, traineeController.list);
 router.put("/traineedetails/:id", traineeController.renew);
 router.get("/trainee/history/:id", traineeController.traineeDetails);
+
+router.post("/setoffer", offerController.create);
+router.get("/offerlist", offerController.list);
+router.delete("/offerdelete/:id", offerController.destroy);
+
+// router.post("/uploadvideos", upload.single("videos"), videoController.create);
 
 module.exports = router;
