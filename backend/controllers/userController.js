@@ -71,9 +71,13 @@ userController.login = async (req, res) => {
       expiresIn: "1d",
     });
 
-    return res
-      .status(200)
-      .json({ message: "Logdin successfully", status: true, token: token });
+    return res.status(200).json({
+      message: "Logdin successfully",
+      status: true,
+      token: token,
+      email: user.email,
+      role: user.role,
+    });
   } catch (err) {
     console.log(err);
     return res
