@@ -29,7 +29,7 @@ router.post("/register", userController.register);
 router.post("/login", userController.login);
 
 router.post("/create", upload.single("pic"), traineeController.create);
-router.get("/traineelist", userAuthentication, traineeController.list);
+router.get("/traineelist", traineeController.list);
 router.put("/traineedetails/:id", traineeController.renew);
 router.get("/trainee/history/:id", traineeController.traineeDetails);
 
