@@ -77,9 +77,29 @@ userController.login = async (req, res) => {
       token: token,
       email: user.email,
       role: user.role,
+      _id: user._id,
     });
   } catch (err) {
     console.log(err);
+    return res
+      .status(500)
+      .json({ message: "Internal server error", error: err });
+  }
+};
+
+userController.getRole = async (req, res) => {
+  // const id = req.params.id;
+  const userId = req.params.id;
+
+  if (!userId) {
+    return res.status(400).jon("User not found");
+  }
+
+  try {
+    const field = "role email";
+    const user = await User.findOne({ _id: userId }).select(field);
+    return res.status(200).json(user);
+  } catch (err) {
     return res
       .status(500)
       .json({ message: "Internal server error", error: err });

@@ -4,19 +4,16 @@ const User = require("../models/userModel");
 const authenticateUser = async (req, res, next) => {
   const token = req.header("Authorization");
 
-  let tokenData;
-  try {
-    tokenData = jwt.verify(token, process.env.TOKEN_SECRET);
+  if (!token) {
+    return res.status(401).json({ message: "Not authorized, no token" });
+  }
 
+  try {
+    const tokenData = jwt.verify(token, process.env.TOKEN_SECRET);
     req.user = await User.findById(tokenData.id).select("-password");
     next();
   } catch (err) {
-    return res.status(401).json(err.message)
-    ;
-  }
-
-  if (!token) {
-    return res.status(401).json("Not authorized, no token");
+    return res.status(401).json({ message: err.message });
   }
 };
 

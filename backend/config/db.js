@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 // command to start monngod:  sudo systemctl start mongod
+// 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
 
 const connectDB = async () => {
   try {

@@ -49,8 +49,6 @@ offerController.list = async (req, res) => {
 offerController.destroy = async (req, res) => {
   const id = req.params.id;
 
-  console.log("jrgnjdfnh", id);
-
   try {
     const offer = await Offer.findByIdAndDelete(id);
 
