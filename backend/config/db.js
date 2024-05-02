@@ -1,8 +1,5 @@
 const mongoose = require("mongoose");
 
-// command to start monngod:  sudo systemctl start mongod
-//
-
 const connectDB = async () => {
   try {
     const conn = await mongoose.connect(process.env.MONGO_URI, {
